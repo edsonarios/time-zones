@@ -1,40 +1,40 @@
-import "./App.css";
-import { useState } from "react";
-import { DateTime } from "luxon";
-import Flag from "react-world-flags";
-import Dropdown from "./Dropdown";
-import { ITimezone } from "./timeZones.interface";
-import { getHour, getTimeZone } from "./utils";
-import IconArrowLink from "./ArrowLink";
+import './App.css'
+import { useState } from 'react'
+import { DateTime } from 'luxon'
+import Flag from 'react-world-flags'
+import Dropdown from './components/Dropdown'
+import { ITimezone } from './components/timeZones.interface'
+import { getHour, getTimeZone } from './components/utils'
+import IconArrowLink from './components/ArrowLink'
 
 export default function App() {
   const [inputDateTime, setInputDateTime] = useState(
-    DateTime.now().toFormat("HH:mm")
-  );
-  const [timezone, setTimezone] = useState("UTC");
+    DateTime.now().toFormat('HH:mm'),
+  )
+  const [timezone, setTimezone] = useState('UTC')
 
   const timezones: ITimezone[] = [
-    { country: "UTC", zone: "UTC", flag: "utc" },
-    { country: "Bolivia", zone: "America/La_Paz", flag: "bo" },
+    { country: 'UTC', zone: 'UTC', flag: 'utc' },
+    { country: 'Bolivia', zone: 'America/La_Paz', flag: 'bo' },
     {
-      country: "Argentina",
-      zone: "America/Argentina/Buenos_Aires",
-      flag: "ar",
+      country: 'Argentina',
+      zone: 'America/Argentina/Buenos_Aires',
+      flag: 'ar',
     },
-    { country: "Chile", zone: "America/Santiago", flag: "cl" },
-    { country: "Perú", zone: "America/Lima", flag: "pe" },
+    { country: 'Chile', zone: 'America/Santiago', flag: 'cl' },
+    { country: 'Perú', zone: 'America/Lima', flag: 'pe' },
     // { country: "Colombia", zone: "America/Bogota", flag: "🇨🇴" },
     // { country: "Ecuador", zone: "America/Guayaquil", flag: "🇪🇨" },
     // { country: "España", zone: "Europe/Madrid", flag: "🇪🇸" },
     // { country: "México", zone: "America/Mexico_City", flag: "🇲🇽" },
     // { country: "Uruguay", zone: "America/Montevideo", flag: "🇺🇾" },
     // { country: "Venezuela", zone: "America/Caracas", flag: "🇻🇪" },
-  ];
+  ]
 
   const convertTime = (dateTime: string, targetZone: string) => {
-    const date = DateTime.fromISO(dateTime, { zone: timezone });
-    return date.setZone(targetZone).toFormat("HH:mm ZZZZ");
-  };
+    const date = DateTime.fromISO(dateTime, { zone: timezone })
+    return date.setZone(targetZone).toFormat('HH:mm ZZZZ')
+  }
 
   return (
     <div className="p-4 flex items-center flex-col">
@@ -74,7 +74,7 @@ export default function App() {
                     {getTimeZone(convertTime(inputDateTime, zone))}
                   </span>
                 </div>
-                <Flag code={flag} className="w-6 h-4 mx-4" fallback={"🌍"} />
+                <Flag code={flag} className="w-6 h-4 mx-4" fallback={'🌍'} />
                 {country}
               </div>
             </li>
@@ -84,16 +84,16 @@ export default function App() {
       {/* Footer */}
       <footer className="absolute bottom-8 flex flex-col items-center">
         <p className="">Made By ⚡ Edson</p>
-          <a
-            className="text-gray-400 flex items-center group hover:text-gray-100 hover:transition-all"
-            href="https://www.linkedin.com/in/edson-a%C3%B1awaya/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Linkedin
-            <IconArrowLink />
-          </a>
+        <a
+          className="text-gray-400 flex items-center group hover:text-gray-100 hover:transition-all"
+          href="https://www.linkedin.com/in/edson-a%C3%B1awaya/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Linkedin
+          <IconArrowLink />
+        </a>
       </footer>
     </div>
-  );
+  )
 }

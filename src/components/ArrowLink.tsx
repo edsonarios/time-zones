@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { SVGProps } from 'react'
 export default function IconArrowLink(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -17,5 +17,5 @@ export default function IconArrowLink(props: SVGProps<SVGSVGElement>) {
       <path d="M7 7h10v10"></path>
       <path d="M7 17 17 7"></path>
     </svg>
-  );
+  )
 }
