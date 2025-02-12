@@ -23,10 +23,10 @@ export default function App() {
     },
     { country: 'Chile', zone: 'America/Santiago', flag: 'cl' },
     { country: 'Perú', zone: 'America/Lima', flag: 'pe' },
-    // { country: "Colombia", zone: "America/Bogota", flag: "🇨🇴" },
+    { country: 'México', zone: 'America/Mexico_City', flag: '🇲🇽' },
+    { country: 'Colombia', zone: 'America/Bogota', flag: '🇨🇴' },
+    { country: 'España', zone: 'Europe/Madrid', flag: '🇪🇸' },
     // { country: "Ecuador", zone: "America/Guayaquil", flag: "🇪🇨" },
-    // { country: "España", zone: "Europe/Madrid", flag: "🇪🇸" },
-    // { country: "México", zone: "America/Mexico_City", flag: "🇲🇽" },
     // { country: "Uruguay", zone: "America/Montevideo", flag: "🇺🇾" },
     // { country: "Venezuela", zone: "America/Caracas", flag: "🇻🇪" },
   ]
