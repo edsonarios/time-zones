@@ -80,6 +80,14 @@ export default function App() {
           selectedTimezone={timezone}
           onChange={setTimezone}
         />
+        <button
+          className="p-2 bg-blue-500 hover:bg-blue-600 rounded-md ml-2"
+          onClick={() => {
+            setInputDateTime(DateTime.now().setZone(timezone).toFormat('HH:mm'))
+          }}
+        >
+          Now
+        </button>
       </div>
 
       {/* All countries time zones */}
