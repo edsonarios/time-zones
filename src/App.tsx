@@ -58,7 +58,7 @@ export default function App() {
   }
 
   return (
-    <div className="p-4 flex items-center flex-col">
+    <div className="p-4 flex items-center flex-col h-100vh">
       <h1 className="text-6xl mb-4">TimeZone Converter</h1>
 
       {/* Input Date */}
