@@ -6,12 +6,15 @@ import Dropdown from './components/Dropdown'
 import { ITimezone } from './components/timeZones.interface'
 import { getHour, getTimeZone } from './components/utils'
 import IconArrowLink from './components/ArrowLink'
+import IconClipBoard from './components/clipBoard'
+import IconCheck from './components/check'
 
 export default function App() {
   const [inputDateTime, setInputDateTime] = useState(
     DateTime.now().toFormat('HH:mm'),
   )
   const [timezone, setTimezone] = useState('UTC')
+  const [copied, setCopied] = useState(false)
 
   const timezones: ITimezone[] = [
     { country: 'UTC', zone: 'UTC', flag: 'utc' },
@@ -23,17 +26,35 @@ export default function App() {
     },
     { country: 'Chile', zone: 'America/Santiago', flag: 'cl' },
     { country: 'Perú', zone: 'America/Lima', flag: 'pe' },
-    { country: 'México', zone: 'America/Mexico_City', flag: '🇲🇽' },
-    { country: 'Colombia', zone: 'America/Bogota', flag: '🇨🇴' },
-    { country: 'España', zone: 'Europe/Madrid', flag: '🇪🇸' },
-    // { country: "Ecuador", zone: "America/Guayaquil", flag: "🇪🇨" },
-    // { country: "Uruguay", zone: "America/Montevideo", flag: "🇺🇾" },
-    // { country: "Venezuela", zone: "America/Caracas", flag: "🇻🇪" },
+    { country: 'México', zone: 'America/Mexico_City', flag: 'mx' },
+    { country: 'Colombia', zone: 'America/Bogota', flag: 'co' },
+    { country: 'España', zone: 'Europe/Madrid', flag: 'es' },
   ]
 
-  const convertTime = (dateTime: string, targetZone: string) => {
+  const convertTime = (
+    dateTime: string,
+    targetZone: string,
+    simple = false,
+  ) => {
     const date = DateTime.fromISO(dateTime, { zone: timezone })
-    return date.setZone(targetZone).toFormat('HH:mm ZZZZ')
+    return date.setZone(targetZone).toFormat(`HH:mm${!simple ? ' ZZZZ' : ''}`)
+  }
+
+  const getFormattedTimeText = () => {
+    return timezones
+      .map(
+        ({ country, zone }) =>
+          `${convertTime(inputDateTime, zone, true)} ${country}`,
+      )
+      .join(', ')
+  }
+
+  const copyToClipboard = () => {
+    const textToCopy = getFormattedTimeText()
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
   }
 
   return (
@@ -80,6 +101,36 @@ export default function App() {
             </li>
           ))}
         </ul>
+      </div>
+
+      {/* Field to copi time-zones */}
+      <div className="mt-6 flex flex-col items-center w-full space-y-1 ">
+        <div className="w-full max-w-lg flex justify-between items-center">
+          <label className="mb-2">Text:</label>
+          <button
+            onClick={copyToClipboard}
+            className="p-2 bg-zinc-500 text-white rounded-md hover:bg-zinc-600"
+          >
+            {copied ? (
+              <div className="flex items-center">
+                <IconCheck className="size-4" />
+                <span className="text-xs ml-0.5">Copiado</span>
+              </div>
+            ) : (
+              <div className="flex items-center">
+                <IconClipBoard className="size-4" />
+                <span className="text-xs ml-0.5">Copiar</span>
+              </div>
+            )}
+          </button>
+        </div>
+        <div className="flex w-full max-w-lg bg-zinc-600 text-white p-2 rounded-md">
+          <textarea
+            value={getFormattedTimeText()}
+            readOnly
+            className="bg-transparent text-white w-full border-none focus:outline-none"
+          />
+        </div>
       </div>
       {/* Footer */}
       <footer className="absolute bottom-8 flex flex-col items-center">
