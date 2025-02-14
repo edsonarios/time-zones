@@ -9,6 +9,7 @@ import IconArrowLink from './components/ArrowLink'
 import IconClipBoard from './components/clipBoard'
 import IconCheck from './components/check'
 import { DropDownSearch } from './components/dropdownSearch'
+import { cn } from './lib/utils'
 
 export default function App() {
   const [selectedTimezones, setSelectedTimezones] = useState<ITimezone[]>([
@@ -94,11 +95,16 @@ export default function App() {
       <section className="flex flex-row items-start w-full">
         <div className="w-4/5 flex flex-col items-center">
           <h2 className="text-lg font-semibold mt-4">Time Zones</h2>
-          <div className="flex justify-center items-center w-96">
-            <ul className="mt-2 bg-zinc-700 p-4 rounded-md text-xl w-full">
+          <div className="flex justify-center items-center min-w-[300px] max-w-[850px]">
+            <ul
+              className={cn(
+                'mt-2 bg-zinc-700 p-4 rounded-md text-xl w-full grid gap-2',
+                selectedTimezones.length > 8 ? 'grid-cols-2' : 'grid-cols-1',
+              )}
+            >
               {selectedTimezones.map(({ country, zone, flag }) => (
                 <li key={zone} className="mb-2">
-                  <div className="flex justify-content items-center">
+                  <div className="flex items-center mr-6">
                     <div>
                       <span>{getHour(convertTime(inputDateTime, zone))}</span>
                       <span className="ml-1 text-xs">
@@ -137,12 +143,12 @@ export default function App() {
             {copied ? (
               <div className="flex items-center">
                 <IconCheck className="size-4" />
-                <span className="text-xs ml-0.5">Copiado</span>
+                <span className="text-xs ml-0.5">Copied</span>
               </div>
             ) : (
               <div className="flex items-center">
                 <IconClipBoard className="size-4" />
-                <span className="text-xs ml-0.5">Copiar</span>
+                <span className="text-xs ml-0.5">Copy</span>
               </div>
             )}
           </button>
