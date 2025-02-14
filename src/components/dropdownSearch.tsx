@@ -18,14 +18,11 @@ import {
 } from '@/components/ui/popover'
 import { allTimeZones } from './util/allTimeZonesParsed'
 import { ITimezone } from './timeZones.interface'
+import { ITimeZoneStore, useTimeZoneStore } from './store/repositoryStore'
 
-export function DropDownSearch({
-  setValue,
-  value,
-}: {
-  setValue: (value: any) => void
-  value: ITimezone[]
-}) {
+export function DropDownSearch() {
+  const { selectedTimezones: value, setSelectedTimezones: setValue } =
+    useTimeZoneStore<ITimeZoneStore>((state) => state)
   const [open, setOpen] = React.useState(false)
 
   const toggleSelection = (selectedZone: ITimezone) => {

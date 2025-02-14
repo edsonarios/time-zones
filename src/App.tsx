@@ -3,29 +3,22 @@ import { useState } from 'react'
 import { DateTime } from 'luxon'
 import Flag from 'react-world-flags'
 import Dropdown from './components/Dropdown'
-import { ITimezone } from './components/timeZones.interface'
 import { getHour, getTimeZone } from './components/utils'
 import IconArrowLink from './components/ArrowLink'
 import IconClipBoard from './components/clipBoard'
 import IconCheck from './components/check'
 import { DropDownSearch } from './components/dropdownSearch'
 import { cn } from './lib/utils'
+import {
+  ITimeZoneStore,
+  useTimeZoneStore,
+} from './components/store/repositoryStore'
 
 export default function App() {
-  const [selectedTimezones, setSelectedTimezones] = useState<ITimezone[]>([
-    { country: 'UTC', zone: 'UTC', flag: 'utc' },
-    { country: 'Bolivia', zone: 'America/La_Paz', flag: 'bo' },
-    {
-      country: 'Argentina',
-      zone: 'America/Argentina/Buenos_Aires',
-      flag: 'ar',
-    },
-    { country: 'Chile', zone: 'America/Santiago', flag: 'cl' },
-    { country: 'Perú', zone: 'America/Lima', flag: 'pe' },
-    { country: 'México', zone: 'America/Mexico_City', flag: 'mx' },
-    { country: 'Colombia', zone: 'America/Bogota', flag: 'co' },
-    { country: 'España', zone: 'Europe/Madrid', flag: 'es' },
-  ])
+  const { selectedTimezones } = useTimeZoneStore<ITimeZoneStore>(
+    (state) => state,
+  )
+
   const [inputDateTime, setInputDateTime] = useState(
     DateTime.now().toFormat('HH:mm'),
   )
@@ -125,10 +118,7 @@ export default function App() {
         </div>
         <div className="w-1/5 flex flex-col items-center">
           <h2 className="text-lg font-semibold mt-4">More TimeZones</h2>
-          <DropDownSearch
-            value={selectedTimezones}
-            setValue={setSelectedTimezones}
-          />
+          <DropDownSearch />
         </div>
       </section>
 
