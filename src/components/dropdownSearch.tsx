@@ -19,7 +19,7 @@ import {
 import { allTimeZones } from './util/allTimeZonesParsed'
 import { ITimezone } from './timeZones.interface'
 import { ITimeZoneStore, useTimeZoneStore } from './store/repositoryStore'
-import Flag from 'react-world-flags'
+// import Flag from 'react-world-flags'
 
 export function DropDownSearch() {
   const { selectedTimezones: value, setSelectedTimezones: setValue } =
