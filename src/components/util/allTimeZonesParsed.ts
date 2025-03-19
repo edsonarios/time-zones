@@ -21,6 +21,7 @@ export const allTimeZones: ITimezone[] = [
   { country: 'Brasil (Manaos)', zone: 'America/Manaus', flag: 'br' },
   { country: 'Brasil (Rio Branco)', zone: 'America/Rio_Branco', flag: 'br' },
   { country: 'Colombia', zone: 'America/Bogota', flag: 'co' },
+  { country: 'Costa Rica', zone: 'America/Costa_Rica', flag: 'cr' },
   { country: 'Ecuador', zone: 'America/Guayaquil', flag: 'ec' },
   { country: 'Ecuador (Galápagos)', zone: 'Pacific/Galapagos', flag: 'ec' },
   { country: 'España', zone: 'Europe/Madrid', flag: 'es' },

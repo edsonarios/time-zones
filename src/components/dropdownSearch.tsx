@@ -19,6 +19,7 @@ import {
 import { allTimeZones } from './util/allTimeZonesParsed'
 import { ITimezone } from './timeZones.interface'
 import { ITimeZoneStore, useTimeZoneStore } from './store/repositoryStore'
+import Flag from 'react-world-flags'
 
 export function DropDownSearch() {
   const { selectedTimezones: value, setSelectedTimezones: setValue } =
@@ -60,6 +61,11 @@ export function DropDownSearch() {
                   value={timeZone.country}
                   onSelect={() => toggleSelection(timeZone)}
                 >
+                  {/* <Flag
+                    code={timeZone.flag}
+                    className="w-6 h-4 mx-4"
+                    fallback={'🌍'}
+                  /> */}
                   {timeZone.country}
                   <Check
                     className={cn(
