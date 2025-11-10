@@ -130,4 +130,5 @@ export const allTimeZones: ITimezone[] = [
   { country: 'Rumania', zone: 'Europe/Bucharest', flag: 'ro' },
   { country: 'Serbia', zone: 'Europe/Belgrade', flag: 'rs' },
   { country: 'Ucrania', zone: 'Europe/Kiev', flag: 'ua' },
+  { country: 'Guatemala', zone: 'America/Guatemala', flag: 'gt' },
 ]
